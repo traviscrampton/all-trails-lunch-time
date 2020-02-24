@@ -13,7 +13,45 @@ class SearchBar extends Component {
 
   submitSearchQuery = e => {
     e.preventDefault();
-    this.props.handleSearchSubmit();
+    const {
+      google: { maps }
+    } = window;
+    const allTrailsHQ = new maps.LatLng(37.7908279, -122.4082753);
+    const map = new maps.Map(document.createElement("div"), {
+      center: allTrailsHQ,
+      zoom: 14
+    });
+    const request = {
+      location: allTrailsHQ,
+      radius: "200",
+      query: this.props.searchText,
+      type: "restaurant"
+    };
+
+    const service = new maps.places.PlacesService(map);
+    service.textSearch(request, this.handleCallback);
+  };
+
+  handleCallback = (results, status) => {
+    if (status == window.google.maps.places.PlacesServiceStatus.OK) {
+      const restaurants = results.map(result => {
+        return {
+          id: result.id,
+          name: result.name,
+          rating: result.rating,
+          userRatingsTotal: result.user_ratings_total,
+          priceLevels: result.price_level,
+          photoUrl: result.photos[0].getUrl(),
+          supportingText: "SupportingText",
+          latLng: {
+            lat: result.geometry.location.lat(),
+            lng: result.geometry.location.lng()
+          }
+        };
+      });
+
+      this.props.handleSearchSubmit(restaurants);
+    }
   };
 
   render() {

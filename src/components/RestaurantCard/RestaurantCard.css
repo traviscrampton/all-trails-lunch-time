@@ -1,0 +1,17 @@
+.restaurant-container {
+  width: 100%;
+  background: white;
+  display: flex;
+  flex-direction: row;
+}
+
+.restaurant-image {
+  width: 64px;
+  height: 64px;
+}
+
+.restaurant-name {
+  color: #808080;
+  font-size: 15px;
+  font-weight: bold;
+}

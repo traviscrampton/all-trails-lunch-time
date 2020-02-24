@@ -1,0 +1,10 @@
+.cardlist-container {
+  height: 500px;
+  width: 30%;
+  background: #f8f8f8;
+  list-style-type: none;
+}
+
+.cardlist-list {
+  list-style-type: none;
+}

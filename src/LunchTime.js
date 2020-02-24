@@ -1,5 +1,7 @@
 import React, { Component } from "react";
 import Header from "./components/Header/Header";
+import MapContainer from "./components/Map/Map";
+import CardList from "./components/CardList/CardList";
 import "./LunchTime.css";
 
 class LunchTime extends Component {
@@ -7,7 +9,8 @@ class LunchTime extends Component {
     super(props);
 
     this.state = {
-      searchText: ""
+      searchText: "",
+      restaurants: []
     };
   }
 
@@ -19,8 +22,8 @@ class LunchTime extends Component {
     return `https://maps.googleapis.com/maps/api/place/nearbysearch/json?location=37.7908279,-122.4082753&radius=1500&type=restaurant&keyword=${this.state.searchText}&key=${process.env.REACT_APP_PLACES_API_KEY}`;
   }
 
-  handleSearchSubmit = () => {
-    const googlePlacesUrl = this.constructGooglePlacesUrl();
+  handleSearchSubmit = restaurants => {
+    this.setState({ restaurants });
   };
 
   render() {
@@ -30,6 +33,10 @@ class LunchTime extends Component {
           handleSearchSubmit={this.handleSearchSubmit}
           handleTextChange={this.handleTextChange}
         />
+        <div className="app-body">
+          <CardList restaurants={this.state.restaurants} />
+          <MapContainer />
+        </div>
       </div>
     );
   }
