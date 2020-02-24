@@ -1,0 +1,19 @@
+.header-container {
+  background: "white";
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  height: 60px;
+}
+
+.header-filter-searchbar {
+  display: flex;
+  flex-direction: row;
+  height: 32px;
+}
+
+.header-logo {
+  width: 270px;
+  height: 34px;
+}
