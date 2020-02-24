@@ -15,7 +15,10 @@ class Header extends Component {
         <img src={logo} className="header-logo" />
         <div className="header-filter-searchbar">
           <Filter />
-          <SearchBar />
+          <SearchBar
+            handleSearchSubmit={this.props.handleSearchSubmit}
+            handleTextChange={this.props.handleTextChange}
+          />
         </div>
       </div>
     );
