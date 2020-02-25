@@ -17,6 +17,7 @@ class SearchBar extends Component {
       google: { maps }
     } = window;
     const allTrailsHQ = new maps.LatLng(37.7908279, -122.4082753);
+    // TODO: Figure out a way to not map refresh on search
     const map = new maps.Map(document.createElement("div"), {
       center: allTrailsHQ,
       zoom: 14
@@ -29,10 +30,18 @@ class SearchBar extends Component {
     };
 
     const service = new maps.places.PlacesService(map);
-    service.textSearch(request, this.handleCallback);
+    service.textSearch(request, this.parseSearchResults);
   };
 
-  handleCallback = (results, status) => {
+  getFirstPhotoUrl(photos) {
+    if (!photos) {
+      return null;
+    }
+
+    return photos[0].getUrl();
+  }
+
+  parseSearchResults = (results, status) => {
     if (status == window.google.maps.places.PlacesServiceStatus.OK) {
       const restaurants = results.map(result => {
         return {
@@ -41,7 +50,7 @@ class SearchBar extends Component {
           rating: result.rating,
           userRatingsTotal: result.user_ratings_total,
           priceLevels: result.price_level,
-          photoUrl: result.photos[0].getUrl(),
+          photoUrl: this.getFirstPhotoUrl(result.photos),
           supportingText: "SupportingText",
           latLng: {
             lat: result.geometry.location.lat(),

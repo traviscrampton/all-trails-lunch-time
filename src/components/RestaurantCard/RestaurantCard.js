@@ -16,7 +16,7 @@ const RestaurantCard = props => {
       <img src={restaurant.photoUrl} className="restaurant-image" />
       <div className="restaurant-metadata">
         <div className="restaurant-name">{restaurant.name}</div>
-        <StarRating />
+        <StarRating rating={restaurant.rating} />
         <div className="price-level-and-text"></div>
       </div>
     </li>

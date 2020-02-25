@@ -14,7 +14,7 @@ class Header extends Component {
       <div className="header-container">
         <img src={logo} className="header-logo" />
         <div className="header-filter-searchbar">
-          <Filter />
+          <Filter toggleSort={this.props.toggleSort} sort={this.props.sort} />
           <SearchBar
             searchText={this.props.searchText}
             handleSearchSubmit={this.props.handleSearchSubmit}

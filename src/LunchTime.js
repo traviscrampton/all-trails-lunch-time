@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import Header from "./components/Header/Header";
 import MapContainer from "./components/Map/Map";
 import CardList from "./components/CardList/CardList";
+import _ from "lodash";
 import "./LunchTime.css";
 
 class LunchTime extends Component {
@@ -13,9 +14,14 @@ class LunchTime extends Component {
       restaurants: [],
       newSearch: false,
       activeRestaurant: { id: null },
-      sorted: "high"
+      sort: "desc"
     };
   }
+
+  toggleSort = sort => {
+    const restaurants = this.getSortedRestaurants(this.state.restaurants, sort);
+    this.setState({ sort, restaurants });
+  };
 
   handleTextChange = query => {
     this.setState({ searchText: query });
@@ -25,7 +31,15 @@ class LunchTime extends Component {
     this.setState({ newSearch: false });
   };
 
-  handleSearchSubmit = restaurants => {
+  getSortedRestaurants(restaurants, sort) {
+    return _.orderBy(restaurants, "rating", sort);
+  }
+
+  handleSearchSubmit = incomingRestaurants => {
+    const restaurants = this.getSortedRestaurants(
+      incomingRestaurants,
+      this.state.sort
+    );
     this.setState({ restaurants, newSearch: true });
   };
 
@@ -37,6 +51,8 @@ class LunchTime extends Component {
     return (
       <div className="app-container">
         <Header
+          toggleSort={this.toggleSort}
+          sort={this.state.sort}
           handleSearchSubmit={this.handleSearchSubmit}
           handleTextChange={this.handleTextChange}
           searchText={this.state.searchText}
