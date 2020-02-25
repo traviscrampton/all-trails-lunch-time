@@ -1,0 +1,9 @@
+.filter-dropdown-container {
+  background: white;
+  z-index: 2;
+  position: absolute;
+  height: 106px;
+  width: 208px;
+  top: 39px;
+  right: 13px;
+}

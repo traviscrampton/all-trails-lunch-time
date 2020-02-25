@@ -9,6 +9,7 @@ const CardList = props => {
 
     return (
       <RestaurantCard
+        key={restaurant.id}
         restaurant={restaurant}
         isActiveRestaurant={isActiveRestaurant}
         updateActiveRestaurant={props.updateActiveRestaurant}

@@ -12,7 +12,8 @@ class LunchTime extends Component {
       searchText: "",
       restaurants: [],
       newSearch: false,
-      activeRestaurant: { id: null }
+      activeRestaurant: { id: null },
+      sorted: "high"
     };
   }
 

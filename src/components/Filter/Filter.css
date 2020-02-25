@@ -1,6 +1,23 @@
+.filter-container {
+  position: relative;
+}
+
 .filter-button {
   height: 100%;
   width: 52px;
   margin-right: 15px;
   border-radius: 8px;
+}
+
+.filter-opac-cover {
+  height: 100vh;
+  width: 100%;
+  position: absolute;
+  background: white;
+  top: 0;
+  right: 0;
+  left: 0;
+  right: 0;
+  z-index: 1;
+  opacity: 0.6;
 }
