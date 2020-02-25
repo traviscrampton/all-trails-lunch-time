@@ -10,7 +10,8 @@ class LunchTime extends Component {
 
     this.state = {
       searchText: "",
-      restaurants: []
+      restaurants: [],
+      newSearch: false
     };
   }
 
@@ -18,12 +19,12 @@ class LunchTime extends Component {
     this.setState({ searchText: query });
   };
 
-  constructGooglePlacesUrl() {
-    return `https://maps.googleapis.com/maps/api/place/nearbysearch/json?location=37.7908279,-122.4082753&radius=1500&type=restaurant&keyword=${this.state.searchText}&key=${process.env.REACT_APP_PLACES_API_KEY}`;
-  }
+  toggleNewSearchFalse = () => {
+    this.setState({ newSearch: false });
+  };
 
   handleSearchSubmit = restaurants => {
-    this.setState({ restaurants });
+    this.setState({ restaurants, newSearch: true });
   };
 
   render() {
@@ -35,7 +36,11 @@ class LunchTime extends Component {
         />
         <div className="app-body">
           <CardList restaurants={this.state.restaurants} />
-          <MapContainer />
+          <MapContainer
+            restaurants={this.state.restaurants}
+            newSearch={this.state.newSearch}
+            toggleNewSearchFalse={this.toggleNewSearchFalse}
+          />
         </div>
       </div>
     );
