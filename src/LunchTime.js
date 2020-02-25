@@ -11,7 +11,8 @@ class LunchTime extends Component {
     this.state = {
       searchText: "",
       restaurants: [],
-      newSearch: false
+      newSearch: false,
+      activeRestaurant: { id: null }
     };
   }
 
@@ -27,6 +28,10 @@ class LunchTime extends Component {
     this.setState({ restaurants, newSearch: true });
   };
 
+  updateActiveRestaurant = activeRestaurant => {
+    this.setState({ activeRestaurant });
+  };
+
   render() {
     return (
       <div className="app-container">
@@ -35,11 +40,17 @@ class LunchTime extends Component {
           handleTextChange={this.handleTextChange}
         />
         <div className="app-body">
-          <CardList restaurants={this.state.restaurants} />
+          <CardList
+            restaurants={this.state.restaurants}
+            activeRestaurant={this.state.activeRestaurant}
+            updateActiveRestaurant={this.updateActiveRestaurant}
+          />
           <MapContainer
             restaurants={this.state.restaurants}
             newSearch={this.state.newSearch}
+            activeRestaurant={this.state.activeRestaurant}
             toggleNewSearchFalse={this.toggleNewSearchFalse}
+            updateActiveRestaurant={this.updateActiveRestaurant}
           />
         </div>
       </div>

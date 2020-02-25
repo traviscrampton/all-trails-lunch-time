@@ -11,8 +11,7 @@ class MapContainer extends Component {
     this.mapContainer = React.createRef();
 
     this.state = {
-      markers: [],
-      openInfoWindow: null
+      markers: []
     };
   }
 
@@ -29,6 +28,11 @@ class MapContainer extends Component {
     if (prevProps.newSearch === false && this.props.newSearch === true) {
       this.updateMapMarkers();
     }
+
+    if (prevProps.activeRestaurant.id !== this.props.activeRestaurant.id) {
+      this.closeOpenWindow(prevProps.activeRestaurant);
+      this.openActiveRestaurantInfoWindow();
+    }
   }
 
   removeMarkers = () => {
@@ -37,11 +41,30 @@ class MapContainer extends Component {
     }
   };
 
-  closeOpenWindow = () => {
-    if (!this.state.openInfoWindow) return;
+  closeOpenWindow = activeRestaurant => {
+    if (activeRestaurant.id === null) return;
 
-    this.state.openInfoWindow.close();
+    const activeMarker = this.state.markers.find(marker => {
+      return marker.restaurant.id === activeRestaurant.id;
+    });
+
+    activeMarker.infoWindow.close();
   };
+
+  openActiveRestaurantInfoWindow() {
+    if (!this.props.activeRestaurant.id) return;
+
+    const activeMarker = this.state.markers.find(marker => {
+      return marker.restaurant.id === this.props.activeRestaurant.id;
+    });
+
+    const { infoWindow } = activeMarker;
+
+    infoWindow.setContent(
+      renderToString(<RestaurantCard restaurant={activeMarker.restaurant} />)
+    );
+    infoWindow.open(this.googleMap, activeMarker.marker);
+  }
 
   createMarker(restaurant) {
     const marker = new window.google.maps.Marker({
@@ -56,30 +79,33 @@ class MapContainer extends Component {
     const infoWindow = new window.google.maps.InfoWindow();
 
     window.google.maps.event.addListener(marker, "click", () => {
-      this.closeOpenWindow();
-      infoWindow.setContent(renderToString(<RestaurantCard {...restaurant} />));
+      this.closeOpenWindow(this.props.activeRestaurant);
+      infoWindow.setContent(
+        renderToString(<RestaurantCard restaurant={restaurant} />)
+      );
       infoWindow.open(this.googleMap, marker);
-      this.setState({ openInfoWindow: infoWindow });
+      this.props.updateActiveRestaurant(restaurant);
     });
 
-    return marker;
+    window.google.maps.event.addListener(infoWindow, "closeclick", () => {
+      this.props.updateActiveRestaurant({ id: null });
+    });
+
+    return { marker, infoWindow, restaurant };
   }
 
   generateNewMarkers = () => {
     const markers = this.props.restaurants.map(restaurant => {
-      this.createMarker(restaurant);
+      return this.createMarker(restaurant);
     });
 
     this.setState({ markers });
   };
 
   updateMapMarkers() {
-    // if there are any map markers remove them
     this.removeMarkers();
     this.generateNewMarkers();
     this.props.toggleNewSearchFalse();
-
-    // create new map markers based on the state
   }
 
   render() {

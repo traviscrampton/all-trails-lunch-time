@@ -3,8 +3,17 @@ import "./CardList.css";
 import RestaurantCard from "../RestaurantCard/RestaurantCard";
 
 const CardList = props => {
+  let isActiveRestaurant;
   const restaurants = props.restaurants.map(restaurant => {
-    return <RestaurantCard {...restaurant} />;
+    isActiveRestaurant = restaurant.id === props.activeRestaurant.id;
+
+    return (
+      <RestaurantCard
+        restaurant={restaurant}
+        isActiveRestaurant={isActiveRestaurant}
+        updateActiveRestaurant={props.updateActiveRestaurant}
+      />
+    );
   });
 
   return (
