@@ -38,6 +38,7 @@ class LunchTime extends Component {
         <Header
           handleSearchSubmit={this.handleSearchSubmit}
           handleTextChange={this.handleTextChange}
+          searchText={this.state.searchText}
         />
         <div className="app-body">
           <CardList

@@ -37,7 +37,7 @@ class MapContainer extends Component {
 
   removeMarkers = () => {
     for (let marker of this.state.markers) {
-      marker.setMap(null);
+      marker.marker.setMap(null);
     }
   };
 

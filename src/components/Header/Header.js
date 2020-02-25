@@ -16,6 +16,7 @@ class Header extends Component {
         <div className="header-filter-searchbar">
           <Filter />
           <SearchBar
+            searchText={this.props.searchText}
             handleSearchSubmit={this.props.handleSearchSubmit}
             handleTextChange={this.props.handleTextChange}
           />
