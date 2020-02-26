@@ -28,3 +28,9 @@
 .activeRestaurant {
   border: 1px solid green;
 }
+
+.restaurant-metadata {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+}

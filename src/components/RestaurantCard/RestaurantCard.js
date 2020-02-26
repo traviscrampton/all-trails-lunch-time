@@ -1,10 +1,12 @@
 import React from "react";
 import "./RestaurantCard.css";
 import StarRating from "../StarRating/StarRating";
+import PriceLevel from "../PriceLevel/PriceLevel";
 const classNames = require("classnames");
 
 const RestaurantCard = props => {
   const { restaurant } = props;
+
   return (
     <li
       key={restaurant.id}
@@ -20,7 +22,10 @@ const RestaurantCard = props => {
           rating={restaurant.rating}
           userRatingsTotal={restaurant.userRatingsTotal}
         />
-        <div className="price-level-and-text"></div>
+        <PriceLevel
+          priceLevel={restaurant.priceLevels}
+          supportingText={restaurant.supportingText}
+        />
       </div>
     </li>
   );
