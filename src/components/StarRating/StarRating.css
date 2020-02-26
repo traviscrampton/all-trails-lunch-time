@@ -1,0 +1,19 @@
+.star-rating-container {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+}
+
+.star-rating-container .material-icons.star {
+  color: #e6e6e6;
+  font-size: 20px;
+}
+.star-rating-container .material-icons.star.goldstar {
+  color: #f5d24a;
+}
+
+.user-rating-count {
+  font-size: 11px;
+  color: #b0b0b0;
+  margin-left: 5px;
+}

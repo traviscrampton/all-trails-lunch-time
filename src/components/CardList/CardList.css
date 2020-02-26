@@ -1,10 +1,14 @@
 .cardlist-container {
-  height: 500px;
-  width: 30%;
+  height: 75vh;
+  width: 35%;
   background: #f8f8f8;
+  padding: 23px;
   list-style-type: none;
+  overflow-y: scroll;
 }
 
 .cardlist-list {
   list-style-type: none;
+  padding: 0;
+  margin: 0;
 }

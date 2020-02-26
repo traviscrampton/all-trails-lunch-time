@@ -51,7 +51,7 @@ class SearchBar extends Component {
           userRatingsTotal: result.user_ratings_total,
           priceLevels: result.price_level,
           photoUrl: this.getFirstPhotoUrl(result.photos),
-          supportingText: "SupportingText",
+          supportingText: "SupportingText", // TODO: Figure out what should go in this window
           latLng: {
             lat: result.geometry.location.lat(),
             lng: result.geometry.location.lng()

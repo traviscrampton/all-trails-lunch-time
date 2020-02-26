@@ -1,13 +1,22 @@
 .restaurant-container {
-  width: 100%;
   background: white;
   display: flex;
   flex-direction: row;
+  margin-bottom: 10px;
+  border: 1px solid #d6d6d6;
+  border-radius: 10px;
+  align-items: top;
+  padding: 15px;
 }
 
 .restaurant-image {
   width: 64px;
   height: 64px;
+  margin-right: 10px;
+}
+
+.restaurant-metadata {
+  max-height: 64px;
 }
 
 .restaurant-name {
