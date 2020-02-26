@@ -27,7 +27,7 @@
 }
 
 .activeRestaurant {
-  border: 1px solid green;
+  border: 1px solid #428a13;
 }
 
 .restaurant-metadata {

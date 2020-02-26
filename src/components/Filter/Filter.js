@@ -1,6 +1,7 @@
 import React, { Component, Fragment } from "react";
 import "./Filter.css";
 import FilterDropdown from "../FilterDropdown/FilterDropdown";
+const classNames = require("classnames");
 
 class Filter extends Component {
   constructor(props) {
@@ -9,6 +10,10 @@ class Filter extends Component {
     this.state = {
       isOpen: false
     };
+  }
+
+  getButtonLabel() {
+    return this.state.isOpen ? "Sort" : "Filter";
   }
 
   toggleFilterWindow = () => {
@@ -43,9 +48,14 @@ class Filter extends Component {
   render() {
     return (
       <Fragment>
-        <div className={"filter-container"}>
-          <button onClick={this.toggleFilterWindow} className="filter-button">
-            Filter
+        <div className="filter-container">
+          <button
+            onClick={this.toggleFilterWindow}
+            className={classNames("filter-button", {
+              isOpen: this.state.isOpen
+            })}
+          >
+            {this.getButtonLabel()}
           </button>
           {this.renderFilterDropdown()}
         </div>

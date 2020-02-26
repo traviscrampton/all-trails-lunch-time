@@ -4,6 +4,7 @@ import { renderToString } from "react-dom/server";
 
 import RestaurantCard from "../RestaurantCard/RestaurantCard";
 const staticPin = require("../../static-pin.png");
+const activePin = require("../../active-pin.png");
 
 class MapContainer extends Component {
   constructor(props) {
@@ -48,6 +49,7 @@ class MapContainer extends Component {
       return marker.restaurant.id === activeRestaurant.id;
     });
 
+    activeMarker.marker.setIcon(staticPin);
     activeMarker.infoWindow.close();
   };
 
@@ -60,6 +62,7 @@ class MapContainer extends Component {
 
     const { infoWindow } = activeMarker;
 
+    activeMarker.marker.setIcon(activePin);
     infoWindow.setContent(
       renderToString(<RestaurantCard restaurant={activeMarker.restaurant} />)
     );
@@ -84,11 +87,13 @@ class MapContainer extends Component {
         renderToString(<RestaurantCard restaurant={restaurant} />)
       );
       infoWindow.open(this.googleMap, marker);
+      marker.setIcon(activePin);
       this.props.updateActiveRestaurant(restaurant);
     });
 
     window.google.maps.event.addListener(infoWindow, "closeclick", () => {
       this.props.updateActiveRestaurant({ id: null });
+      marker.setIcon(staticPin);
     });
 
     return { marker, infoWindow, restaurant };

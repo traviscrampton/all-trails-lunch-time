@@ -24,28 +24,34 @@ class FilterDropdown extends Component {
       <div className="filter-dropdown-container" onSubmit={this.handleSubmit}>
         <form>
           <div>
-            <label>
+            <label className="label-container">
+              Ratings High to Low
               <input
                 type="radio"
                 value="desc"
                 onChange={this.handleRadioClick}
                 checked={this.state.sort === "desc"}
               />
-              Ratings High to Low
+              <span className="checkmark">
+                <i className="material-icons">check</i>
+              </span>
             </label>
           </div>
           <div>
-            <label>
+            <label className="label-container">
+              Ratings Low to High
               <input
                 type="radio"
                 value="asc"
                 onChange={this.handleRadioClick}
                 checked={this.state.sort === "asc"}
               />
-              Ratings Low to High
+              <span className="checkmark">
+                <i className="material-icons">check</i>
+              </span>
             </label>
           </div>
-          <input type="submit" value="Apply" />
+          <input className="sort-submit" type="submit" value="Apply" />
         </form>
       </div>
     );

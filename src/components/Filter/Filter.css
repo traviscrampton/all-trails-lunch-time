@@ -9,6 +9,13 @@
   border-radius: 8px;
   border: 1px solid #e6e6e6;
   color: #a3a3a3;
+  cursor: pointer;
+}
+
+.filter-button.isOpen {
+  background-color: ##428a13;
+  color: white;
+  border: 1px solid ##428a13;
 }
 
 .filter-opac-cover {

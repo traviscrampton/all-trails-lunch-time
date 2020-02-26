@@ -1,10 +1,11 @@
 .header-container {
-  background: "white";
+  background: white;
   display: flex;
   flex-direction: row;
   justify-content: space-between;
   align-items: center;
   height: 60px;
+  padding: 0 25px 0 25px;
 }
 
 .header-filter-searchbar {
