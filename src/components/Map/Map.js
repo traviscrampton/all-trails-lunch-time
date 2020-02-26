@@ -81,7 +81,7 @@ class MapContainer extends Component {
     });
     const infoWindow = new window.google.maps.InfoWindow();
 
-    window.google.maps.event.addListener(marker, "click", () => {
+    window.google.maps.event.addListener(marker, "mouseover", () => {
       this.closeOpenWindow(this.props.activeRestaurant);
       infoWindow.setContent(
         renderToString(<RestaurantCard restaurant={restaurant} />)
@@ -91,7 +91,7 @@ class MapContainer extends Component {
       this.props.updateActiveRestaurant(restaurant);
     });
 
-    window.google.maps.event.addListener(infoWindow, "closeclick", () => {
+    window.google.maps.event.addListener(infoWindow, "mouseout", () => {
       this.props.updateActiveRestaurant({ id: null });
       marker.setIcon(staticPin);
     });

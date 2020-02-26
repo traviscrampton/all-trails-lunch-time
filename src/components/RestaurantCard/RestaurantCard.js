@@ -10,23 +10,26 @@ const RestaurantCard = props => {
   return (
     <li
       key={restaurant.id}
-      onClick={() => props.updateActiveRestaurant(restaurant)}
+      onMouseOver={() => props.updateActiveRestaurant(restaurant)}
+      onMouseOut={() => props.updateActiveRestaurant({ id: null })}
       className={classNames("restaurant-container", {
         activeRestaurant: props.isActiveRestaurant
       })}
     >
-      <img src={restaurant.photoUrl} className="restaurant-image" />
-      <div className="restaurant-metadata">
-        <div className="restaurant-name">{restaurant.name}</div>
-        <StarRating
-          rating={restaurant.rating}
-          userRatingsTotal={restaurant.userRatingsTotal}
-        />
-        <PriceLevel
-          priceLevel={restaurant.priceLevels}
-          supportingText={restaurant.supportingText}
-        />
-      </div>
+      <a href={restaurant.placeUrl} target="_blank" className="restaurant-link">
+        <img src={restaurant.photoUrl} className="restaurant-image" />
+        <div className="restaurant-metadata">
+          <div className="restaurant-name">{restaurant.name}</div>
+          <StarRating
+            rating={restaurant.rating}
+            userRatingsTotal={restaurant.userRatingsTotal}
+          />
+          <PriceLevel
+            priceLevel={restaurant.priceLevels}
+            supportingText={restaurant.supportingText}
+          />
+        </div>
+      </a>
     </li>
   );
 };

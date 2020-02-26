@@ -1,13 +1,17 @@
 .restaurant-container {
   background: white;
-  display: flex;
-  flex-direction: row;
   margin-bottom: 10px;
   border: 1px solid #d6d6d6;
   border-radius: 10px;
-  align-items: top;
+  list-style-type: none;
   padding: 15px;
   cursor: pointer;
+}
+
+.restaurant-link {
+  display: flex;
+  flex-direction: row;
+  text-decoration: none;
 }
 
 .restaurant-image {

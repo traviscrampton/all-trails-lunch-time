@@ -41,12 +41,18 @@ class SearchBar extends Component {
     return photos[0].getUrl();
   }
 
+  generatePlaceUrl(result) {
+    const encodedName = encodeURIComponent(result.name);
+    return `https://www.google.com/maps/search/?api=1&query=${encodedName}&query_place_id=${result.place_id}`;
+  }
+
   parseSearchResults = (results, status) => {
     if (status == window.google.maps.places.PlacesServiceStatus.OK) {
       const restaurants = results.map(result => {
         return {
-          id: result.id,
+          id: result.place_id,
           name: result.name,
+          placeUrl: this.generatePlaceUrl(result),
           rating: result.rating,
           userRatingsTotal: result.user_ratings_total,
           priceLevels: result.price_level,
@@ -58,7 +64,7 @@ class SearchBar extends Component {
           }
         };
       });
-
+      debugger;
       this.props.handleSearchSubmit(restaurants);
     }
   };
