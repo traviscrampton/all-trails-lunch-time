@@ -72,7 +72,9 @@ class SearchBar extends Component {
           value={this.props.searchText}
           onChange={this.handleTextChange}
         />
-        <button className="searchbar-button">S</button>
+        <button className="searchbar-button">
+          <i className="material-icons search">search</i>
+        </button>
       </form>
     );
   }

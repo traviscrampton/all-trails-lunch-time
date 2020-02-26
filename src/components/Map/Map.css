@@ -2,3 +2,9 @@
   width: 65%;
   height: 75vh;
 }
+
+#map-container .restaurant-container {
+  border: none;
+  padding: 5px;
+  margin-bottom: 0;
+}
