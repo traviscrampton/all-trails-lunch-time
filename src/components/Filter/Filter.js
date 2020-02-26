@@ -1,5 +1,6 @@
 import React, { Component, Fragment } from "react";
 import "./Filter.css";
+import PropTypes from "prop-types";
 import FilterDropdown from "../FilterDropdown/FilterDropdown";
 const classNames = require("classnames");
 
@@ -64,5 +65,10 @@ class Filter extends Component {
     );
   }
 }
+
+Filter.propTypes = {
+  toggleSort: PropTypes.func.isRequired,
+  sort: PropTypes.string.isRequired
+};
 
 export default Filter;

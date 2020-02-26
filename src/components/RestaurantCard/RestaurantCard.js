@@ -1,6 +1,7 @@
 import React from "react";
 import "./RestaurantCard.css";
 import StarRating from "../StarRating/StarRating";
+import PropTypes from "prop-types";
 import PriceLevel from "../PriceLevel/PriceLevel";
 const classNames = require("classnames");
 
@@ -32,6 +33,25 @@ const RestaurantCard = props => {
       </a>
     </li>
   );
+};
+
+RestaurantCard.propTypes = {
+  restaurant: PropTypes.shape({
+    id: PropTypes.string,
+    name: PropTypes.string,
+    placeUrl: PropTypes.string,
+    rating: PropTypes.number,
+    userRatingsTotal: PropTypes.number,
+    priceLevels: PropTypes.number,
+    photoUrl: PropTypes.string,
+    supportingText: PropTypes.string,
+    latLng: PropTypes.shape({
+      lat: PropTypes.number,
+      lng: PropTypes.number
+    })
+  }),
+  isActiveRestaurant: PropTypes.bool,
+  updateActiveRestaurant: PropTypes.func.isRequired
 };
 
 export default RestaurantCard;

@@ -1,4 +1,5 @@
 import React from "react";
+import PropTypes from "prop-types";
 import "./StarRating.css";
 const classNames = require("classnames");
 
@@ -28,6 +29,11 @@ const StarRating = ({ rating, userRatingsTotal }) => {
       <span className="user-rating-count">({userRatingsTotal})</span>
     </div>
   );
+};
+
+StarRating.propTypes = {
+  rating: PropTypes.number,
+  userRatingTotal: PropTypes.number
 };
 
 export default StarRating;

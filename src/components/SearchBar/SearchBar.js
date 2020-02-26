@@ -64,7 +64,7 @@ class SearchBar extends Component {
           }
         };
       });
-      debugger;
+
       this.props.handleSearchSubmit(restaurants);
     }
   };

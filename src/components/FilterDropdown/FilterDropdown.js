@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import "./FilterDropdown.css";
+import PropTypes from "prop-types";
 
 class FilterDropdown extends Component {
   constructor(props) {
@@ -57,5 +58,10 @@ class FilterDropdown extends Component {
     );
   }
 }
+
+FilterDropdown.propTypes = {
+  toggleSort: PropTypes.func.isRequired,
+  sort: PropTypes.string.isRequired
+};
 
 export default FilterDropdown;

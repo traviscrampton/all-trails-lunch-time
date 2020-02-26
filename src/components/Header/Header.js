@@ -1,7 +1,8 @@
 import React, { Component } from "react";
+import "./Header.css";
+import PropTypes from "prop-types";
 import Filter from "../Filter/Filter";
 import SearchBar from "../SearchBar/SearchBar";
-import "./Header.css";
 const logo = require("../../logo.png");
 
 class Header extends Component {
@@ -25,5 +26,13 @@ class Header extends Component {
     );
   }
 }
+
+Header.propTypes = {
+  toggleSort: PropTypes.func.isRequired,
+  sort: PropTypes.string.isRequired,
+  handleSearchSubmit: PropTypes.func.isRequired,
+  handleTextChange: PropTypes.func.isRequired,
+  searchText: PropTypes.string
+};
 
 export default Header;

@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import "./Map.css";
+import PropTypes from "prop-types";
 import { renderToString } from "react-dom/server";
-
 import RestaurantCard from "../RestaurantCard/RestaurantCard";
 const staticPin = require("../../static-pin.png");
 const activePin = require("../../active-pin.png");
@@ -117,5 +117,41 @@ class MapContainer extends Component {
     return <div ref={this.mapContainer} id="map-container"></div>;
   }
 }
+
+MapContainer.propTypes = {
+  restaurants: PropTypes.arrayOf(
+    PropTypes.shape({
+      id: PropTypes.string,
+      name: PropTypes.string,
+      placeUrl: PropTypes.string,
+      rating: PropTypes.number,
+      userRatingsTotal: PropTypes.number,
+      priceLevels: PropTypes.number,
+      photoUrl: PropTypes.string,
+      supportingText: PropTypes.string,
+      latLng: PropTypes.shape({
+        lat: PropTypes.number,
+        lng: PropTypes.number
+      })
+    })
+  ),
+  activeRestaurant: PropTypes.shape({
+    id: PropTypes.string,
+    name: PropTypes.string,
+    placeUrl: PropTypes.string,
+    rating: PropTypes.number,
+    userRatingsTotal: PropTypes.number,
+    priceLevels: PropTypes.number,
+    photoUrl: PropTypes.string,
+    supportingText: PropTypes.string,
+    latLng: PropTypes.shape({
+      lat: PropTypes.number,
+      lng: PropTypes.number
+    })
+  }),
+  newSearch: PropTypes.bool,
+  toggleNewSearchFalse: PropTypes.func.isRequired,
+  updateActiveRestaurant: PropTypes.func.isRequired
+};
 
 export default MapContainer;
