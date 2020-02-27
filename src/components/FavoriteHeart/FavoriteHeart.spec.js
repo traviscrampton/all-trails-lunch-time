@@ -45,7 +45,8 @@ describe("FavoriteHeart", () => {
         updateFavoriteIds: jest.fn(),
         isFavorite: true
       };
-      wrapper = mount(<FavoriteHeart {...props} />);
+      wrapper = mount(<FavoriteHeart {...props} />us
+        );
     });
 
     it("does render an .isFavorite class", () => {
