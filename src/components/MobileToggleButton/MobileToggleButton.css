@@ -1,0 +1,31 @@
+.mobile-toggle-button {
+  position: fixed;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  /* z-index: 1; */
+  bottom: 10px;
+  border: none;
+  background: #428813;
+  border-radius: 5px;
+  padding: 10px 25px;
+  box-shadow: 2px 3px 3px rgba(0, 0, 0, 0.3), 0 1px 2px rgba(0, 0, 0, 0.3);
+}
+
+.button-copy {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+}
+
+.button-copy span {
+  padding-bottom: 2px;
+  color: white;
+  font-weight: bold;
+  font-size: 14px;
+}
+
+.button-copy .material-icons {
+  color: white;
+  font-size: 20px;
+  margin-right: 5px;
+}

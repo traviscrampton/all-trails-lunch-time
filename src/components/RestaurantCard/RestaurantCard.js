@@ -12,7 +12,11 @@ const useDefaultImage = e => {
 };
 
 const RestaurantCard = props => {
-  const { restaurant } = props;
+  let {
+    restaurant,
+    restaurant: { photoUrl }
+  } = props;
+  photoUrl = photoUrl ? photoUrl : storeFront;
 
   return (
     <li
@@ -31,7 +35,7 @@ const RestaurantCard = props => {
       >
         <img
           onError={useDefaultImage}
-          src={restaurant.photoUrl}
+          src={photoUrl}
           alt="storefront"
           className="restaurant-image"
         />

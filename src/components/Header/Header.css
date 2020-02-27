@@ -19,5 +19,31 @@
 
 .header-logo {
   width: 270px;
-  height: 34px;
+  /* height: 34px; */
+}
+
+@media screen and (max-width: 550px) {
+  .header-container {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    height: 90px;
+  }
+
+  .header-container .filter-button {
+    margin-right: 5px;
+  }
+
+  .header-logo {
+    width: 200px;
+    margin-bottom: 10px;
+  }
+
+  .header-filter-searchbar {
+    width: 270px;
+  }
+
+  .header-container .filter-dropdown-container {
+    left: 3px;
+  }
 }
