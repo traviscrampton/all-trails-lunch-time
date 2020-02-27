@@ -3,7 +3,7 @@ import { mount } from "enzyme";
 import RestaurantCard from "./RestaurantCard";
 import StarRating from "../StarRating/StarRating";
 import PriceLevel from "../PriceLevel/PriceLevel";
-import Enzyme from "enzyme";
+import FavoriteHeart from "../FavoriteHeart/FavoriteHeart";
 
 describe("RestaurantCard", () => {
   describe("Renders RestaurantCard", () => {
@@ -26,7 +26,9 @@ describe("RestaurantCard", () => {
           }
         },
         isActiveRestaurant: false,
-        updateActiveRestaurant: jest.fn
+        updateActiveRestaurant: jest.fn(),
+        isFavorite: false,
+        updateFavoriteIds: jest.fn()
       };
       wrapper = mount(<RestaurantCard {...props} />);
     });
@@ -63,6 +65,10 @@ describe("RestaurantCard", () => {
       expect(wrapper.find(PriceLevel)).toHaveLength(1);
     });
 
+    it("has a FavoriteHeart component", () => {
+      expect(wrapper.find(FavoriteHeart)).toHaveLength(1);
+    });
+
     it("restaurant  name is on restaurant card", () => {
       expect(wrapper.find(".restaurant-name").text()).toEqual(
         props.restaurant.name
@@ -90,7 +96,9 @@ describe("RestaurantCard", () => {
           }
         },
         isActiveRestaurant: false,
-        updateActiveRestaurant: jest.fn()
+        updateActiveRestaurant: jest.fn(),
+        isFavorite: false,
+        updateFavoriteIds: jest.fn()
       };
       wrapper = mount(<RestaurantCard {...props} />);
     });

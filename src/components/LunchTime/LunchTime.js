@@ -14,13 +14,34 @@ class LunchTime extends Component {
       restaurants: [],
       newSearch: false,
       activeRestaurant: { id: null },
-      sort: "desc"
+      sort: "desc",
+      favoriteIds: []
     };
   }
 
   toggleSort = sort => {
     const restaurants = this.getSortedRestaurants(this.state.restaurants, sort);
     this.setState({ sort, restaurants });
+  };
+
+  addIdToFavorites(id) {
+    return [...this.state.favoriteIds, id];
+  }
+
+  removeIdFromFavorites(id) {
+    return this.state.favoriteIds.filter(favId => {
+      return favId !== id;
+    });
+  }
+
+  updateFavoriteIds = (e, id) => {
+    e.preventDefault();
+
+    const favoriteIds = this.state.favoriteIds.includes(id)
+      ? this.removeIdFromFavorites(id)
+      : this.addIdToFavorites(id);
+
+    this.setState({ favoriteIds });
   };
 
   handleTextChange = query => {
@@ -62,6 +83,8 @@ class LunchTime extends Component {
             restaurants={this.state.restaurants}
             activeRestaurant={this.state.activeRestaurant}
             updateActiveRestaurant={this.updateActiveRestaurant}
+            updateFavoriteIds={this.updateFavoriteIds}
+            favoriteIds={this.state.favoriteIds}
           />
           <MapContainer
             restaurants={this.state.restaurants}

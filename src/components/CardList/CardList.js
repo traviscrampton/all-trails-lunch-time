@@ -5,8 +5,10 @@ import RestaurantCard from "../RestaurantCard/RestaurantCard";
 
 const CardList = props => {
   let isActiveRestaurant;
+  let isFavorite;
   const restaurants = props.restaurants.map(restaurant => {
     isActiveRestaurant = restaurant.id === props.activeRestaurant.id;
+    isFavorite = props.favoriteIds.includes(restaurant.id);
 
     return (
       <RestaurantCard
@@ -14,6 +16,8 @@ const CardList = props => {
         restaurant={restaurant}
         isActiveRestaurant={isActiveRestaurant}
         updateActiveRestaurant={props.updateActiveRestaurant}
+        isFavorite={isFavorite}
+        updateFavoriteIds={props.updateFavoriteIds}
       />
     );
   });
@@ -56,7 +60,9 @@ CardList.propTypes = {
       lng: PropTypes.number
     })
   }),
-  updateActiveRestaurant: PropTypes.func.isRequired
+  updateActiveRestaurant: PropTypes.func.isRequired,
+  updateFavoriteIds: PropTypes.func,
+  favoriteIds: PropTypes.arrayOf(PropTypes.string)
 };
 
 export default CardList;

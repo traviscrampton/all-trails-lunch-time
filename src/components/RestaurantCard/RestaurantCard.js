@@ -3,6 +3,7 @@ import "./RestaurantCard.css";
 import StarRating from "../StarRating/StarRating";
 import PropTypes from "prop-types";
 import PriceLevel from "../PriceLevel/PriceLevel";
+import FavoriteHeart from "../FavoriteHeart/FavoriteHeart";
 const classNames = require("classnames");
 
 const RestaurantCard = props => {
@@ -39,6 +40,10 @@ const RestaurantCard = props => {
             supportingText={restaurant.supportingText}
           />
         </div>
+        <FavoriteHeart
+          isFavorite={props.isFavorite}
+          updateFavoriteIds={e => props.updateFavoriteIds(e, restaurant.id)}
+        />
       </a>
     </li>
   );
@@ -60,7 +65,9 @@ RestaurantCard.propTypes = {
     })
   }),
   isActiveRestaurant: PropTypes.bool,
-  updateActiveRestaurant: PropTypes.func.isRequired
+  updateActiveRestaurant: PropTypes.func.isRequired,
+  isFavorite: PropTypes.bool,
+  updateFavoriteIds: PropTypes.func
 };
 
 export default RestaurantCard;

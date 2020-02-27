@@ -14,9 +14,9 @@
 }
 
 .filter-button.isOpen {
-  background-color: ##428a13;
+  background-color: #428a13;
   color: white;
-  border: 1px solid ##428a13;
+  border: 1px solid #428a13;
 }
 
 .filter-opac-cover {

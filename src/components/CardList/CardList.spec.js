@@ -10,7 +10,9 @@ describe("CardList", () => {
     beforeEach(() => {
       props = {
         restaurants: [],
-        updateActiveRestaurant: jest.fn
+        updateActiveRestaurant: jest.fn(),
+        favoriteIds: [],
+        updateFavoriteIds: jest.fn()
       };
       wrapper = mount(<CardList {...props} />);
     });
@@ -62,7 +64,10 @@ describe("CardList", () => {
               lng: 28
             }
           }
-        ]
+        ],
+        favoriteIds: [],
+        updateActiveRestaurant: jest.fn(),
+        updateFavoriteIds: jest.fn()
       };
       wrapper = mount(
         <CardList restaurants={[]} updateActiveRestaurant={jest.fn} />

@@ -1,0 +1,20 @@
+.favorite-button {
+  background: white;
+  border: none;
+  height: 24px;
+  margin-left: auto;
+  padding: 0;
+  cursor: pointer;
+}
+
+.favorite-button:focus {
+  outline: none;
+}
+
+.material-icons.heart {
+  color: #cccccc;
+}
+
+.isFavorite .material-icons.heart {
+  color: #428a13;
+}
