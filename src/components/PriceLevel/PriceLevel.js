@@ -20,9 +20,9 @@ const PriceLevel = ({ priceLevel, supportingText }) => {
   const dollarSigns = getDollarSigns(priceLevel);
   return (
     <div className="price-level-container">
-      <span>{dollarSigns} </span>
+      <span className="dollar-signs">{dollarSigns} </span>
       <span>{"\u2022"} </span>
-      <span>{supportingText}</span>
+      <span className="supporting-text">{supportingText}</span>
     </div>
   );
 };
