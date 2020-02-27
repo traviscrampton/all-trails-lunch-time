@@ -8,7 +8,7 @@ const logo = require("../../logo.png");
 const Header = props => {
   return (
     <div className="header-container">
-      <img src={logo} className="header-logo" />
+      <img src={logo} alt="logo" className="header-logo" />
       <div className="header-filter-searchbar">
         <Filter toggleSort={props.toggleSort} sort={props.sort} />
         <SearchBar

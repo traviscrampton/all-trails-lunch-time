@@ -17,8 +17,17 @@ const RestaurantCard = props => {
         activeRestaurant: props.isActiveRestaurant
       })}
     >
-      <a href={restaurant.placeUrl} target="_blank" className="restaurant-link">
-        <img src={restaurant.photoUrl} className="restaurant-image" />
+      <a
+        href={restaurant.placeUrl}
+        target="_blank"
+        rel="noopener noreferrer"
+        className="restaurant-link"
+      >
+        <img
+          src={restaurant.photoUrl}
+          alt="storefront"
+          className="restaurant-image"
+        />
         <div className="restaurant-metadata">
           <div className="restaurant-name">{restaurant.name}</div>
           <StarRating

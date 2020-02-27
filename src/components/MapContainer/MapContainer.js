@@ -49,8 +49,10 @@ class MapContainer extends Component {
       return marker.restaurant.id === activeRestaurant.id;
     });
 
-    activeMarker.marker.setIcon(staticPin);
-    activeMarker.infoWindow.close();
+    if (activeMarker) {
+      activeMarker.marker.setIcon(staticPin);
+      activeMarker.infoWindow.close();
+    }
   };
 
   openActiveRestaurantInfoWindow() {

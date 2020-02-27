@@ -3,10 +3,6 @@ import PropTypes from "prop-types";
 import "./SearchBar.css";
 
 class SearchBar extends Component {
-  constructor(props) {
-    super(props);
-  }
-
   handleTextChange = e => {
     this.props.handleTextChange(e.currentTarget.value);
   };
@@ -17,7 +13,6 @@ class SearchBar extends Component {
       google: { maps }
     } = window;
     const allTrailsHQ = new maps.LatLng(37.7908279, -122.4082753);
-    // TODO: Figure out a way to not map refresh on search
     const map = new maps.Map(document.createElement("div"), {
       center: allTrailsHQ,
       zoom: 14
@@ -47,7 +42,7 @@ class SearchBar extends Component {
   }
 
   parseSearchResults = (results, status) => {
-    if (status == window.google.maps.places.PlacesServiceStatus.OK) {
+    if (status === window.google.maps.places.PlacesServiceStatus.OK) {
       const restaurants = results.map(result => {
         return {
           id: result.place_id,
@@ -71,7 +66,11 @@ class SearchBar extends Component {
 
   render() {
     return (
-      <form className="searchbar-container" onSubmit={this.submitSearchQuery}>
+      <form
+        className="searchbar-container"
+        ref={this.searchForm}
+        onSubmit={this.submitSearchQuery}
+      >
         <input
           className="searchbar-text-input"
           placeholder="Search for a restaurant"
