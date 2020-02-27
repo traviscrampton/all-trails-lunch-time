@@ -4,7 +4,12 @@ import StarRating from "../StarRating/StarRating";
 import PropTypes from "prop-types";
 import PriceLevel from "../PriceLevel/PriceLevel";
 import FavoriteHeart from "../FavoriteHeart/FavoriteHeart";
+const storeFront = require("../../store-front.png");
 const classNames = require("classnames");
+
+const useDefaultImage = e => {
+  e.target.src = storeFront;
+};
 
 const RestaurantCard = props => {
   const { restaurant } = props;
@@ -25,6 +30,7 @@ const RestaurantCard = props => {
         className="restaurant-link"
       >
         <img
+          onError={useDefaultImage}
           src={restaurant.photoUrl}
           alt="storefront"
           className="restaurant-image"
@@ -65,7 +71,7 @@ RestaurantCard.propTypes = {
     })
   }),
   isActiveRestaurant: PropTypes.bool,
-  updateActiveRestaurant: PropTypes.func.isRequired,
+  updateActiveRestaurant: PropTypes.func,
   isFavorite: PropTypes.bool,
   updateFavoriteIds: PropTypes.func
 };

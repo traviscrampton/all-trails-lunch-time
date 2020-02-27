@@ -12,10 +12,11 @@ class SearchBar extends Component {
     const {
       google: { maps }
     } = window;
+
     const allTrailsHQ = new maps.LatLng(37.7908279, -122.4082753);
     const map = new maps.Map(document.createElement("div"), {
       center: allTrailsHQ,
-      zoom: 14
+      zoom: 16
     });
     const request = {
       location: allTrailsHQ,
@@ -42,8 +43,9 @@ class SearchBar extends Component {
   }
 
   parseSearchResults = (results, status) => {
+    let restaurants;
     if (status === window.google.maps.places.PlacesServiceStatus.OK) {
-      const restaurants = results.map(result => {
+      restaurants = results.map(result => {
         return {
           id: result.place_id,
           name: result.name,
@@ -59,9 +61,11 @@ class SearchBar extends Component {
           }
         };
       });
-
-      this.props.handleSearchSubmit(restaurants);
+    } else {
+      restaurants = [];
     }
+
+    this.props.handleSearchSubmit(restaurants);
   };
 
   render() {

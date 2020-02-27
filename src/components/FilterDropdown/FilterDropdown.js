@@ -6,6 +6,8 @@ class FilterDropdown extends Component {
   constructor(props) {
     super(props);
 
+    // this the current radio button, not the sort for the entire app
+    // after submit that is fired off
     this.state = {
       sort: props.sort
     };

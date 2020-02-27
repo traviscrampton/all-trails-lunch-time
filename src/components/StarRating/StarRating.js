@@ -16,6 +16,7 @@ const Star = ({ isGoldStar }) => {
 };
 
 const Stars = ({ rating }) => {
+  // decides if a star is gold or not
   const roundedRating = Math.round(rating);
   return [...Array(5)].map((e, i) => {
     return <Star isGoldStar={i + 1 <= roundedRating} key={i} />;

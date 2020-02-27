@@ -20,6 +20,7 @@ class LunchTime extends Component {
   }
 
   toggleSort = sort => {
+    // sorts the restaurant and then updates the sort state
     const restaurants = this.getSortedRestaurants(this.state.restaurants, sort);
     this.setState({ sort, restaurants });
   };
@@ -45,10 +46,12 @@ class LunchTime extends Component {
   };
 
   handleTextChange = query => {
+    // updates text for the search bar
     this.setState({ searchText: query });
   };
 
   toggleNewSearchFalse = () => {
+    // updates from the MapComponent that a new search is over so Map knows to re-render the map pins
     this.setState({ newSearch: false });
   };
 
@@ -65,6 +68,7 @@ class LunchTime extends Component {
   };
 
   updateActiveRestaurant = activeRestaurant => {
+    // this fires when a restaurant is hovered on
     this.setState({ activeRestaurant });
   };
 

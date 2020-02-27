@@ -35,7 +35,7 @@ describe("MapContainer", () => {
         wrapper.instance().mapContainer.current,
         {
           center: { lat: 37.7908279, lng: -122.4082753 },
-          zoom: 14
+          zoom: 16
         }
       );
     });

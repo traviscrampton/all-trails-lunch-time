@@ -23,6 +23,7 @@ class Filter extends Component {
   };
 
   handleToggleSort = sort => {
+    //closes the sort window and then sends up the desired sort method to server
     this.toggleFilterWindow();
     this.props.toggleSort(sort);
   };
@@ -39,6 +40,7 @@ class Filter extends Component {
   }
 
   renderOpacCover() {
+    // onclick of Opac window also toggles the isOpen state
     if (!this.state.isOpen) return;
 
     return (

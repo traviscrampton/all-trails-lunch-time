@@ -10,26 +10,33 @@ class MapContainer extends Component {
   constructor(props) {
     super(props);
     this.mapContainer = React.createRef();
+    this.googleMapsInstance = window.google.maps;
 
     this.state = {
-      markers: []
+      interestPoints: []
     };
   }
 
   static ALL_TRAILS_LAT_LNG = { lat: 37.7908279, lng: -122.4082753 };
 
   componentDidMount() {
-    this.googleMap = new window.google.maps.Map(this.mapContainer.current, {
-      center: MapContainer.ALL_TRAILS_LAT_LNG,
-      zoom: 14
-    });
+    // loads the google map onto the page
+    this.googleMap = new this.googleMapsInstance.Map(
+      this.mapContainer.current,
+      {
+        center: MapContainer.ALL_TRAILS_LAT_LNG,
+        zoom: 16
+      }
+    );
   }
 
   componentDidUpdate(prevProps, prevState) {
+    // if there is a new search, we need to remove old markers and put new ones in
     if (prevProps.newSearch === false && this.props.newSearch === true) {
       this.updateMapMarkers();
     }
 
+    // if the activeRestaurant changes, the markers need to change as well
     if (prevProps.activeRestaurant.id !== this.props.activeRestaurant.id) {
       this.closeOpenWindow(prevProps.activeRestaurant);
       this.openActiveRestaurantInfoWindow();
@@ -37,43 +44,49 @@ class MapContainer extends Component {
   }
 
   removeMarkers = () => {
-    for (let marker of this.state.markers) {
-      marker.marker.setMap(null);
+    for (let interestPoint of this.state.interestPoints) {
+      interestPoint.marker.setMap(null);
     }
   };
 
   closeOpenWindow = activeRestaurant => {
     if (activeRestaurant.id === null) return;
 
-    const activeMarker = this.state.markers.find(marker => {
-      return marker.restaurant.id === activeRestaurant.id;
-    });
+    const activeInterestPoint = this.state.interestPoints.find(
+      interestPoint => {
+        return interestPoint.restaurant.id === activeRestaurant.id;
+      }
+    );
 
-    if (activeMarker) {
-      activeMarker.marker.setIcon(staticPin);
-      activeMarker.infoWindow.close();
+    if (activeInterestPoint) {
+      activeInterestPoint.marker.setIcon(staticPin);
+      activeInterestPoint.infoWindow.close();
     }
   };
 
   openActiveRestaurantInfoWindow() {
     if (!this.props.activeRestaurant.id) return;
 
-    const activeMarker = this.state.markers.find(marker => {
-      return marker.restaurant.id === this.props.activeRestaurant.id;
-    });
-
-    const { infoWindow } = activeMarker;
-
-    activeMarker.marker.setIcon(activePin);
-    infoWindow.setContent(
-      renderToString(<RestaurantCard restaurant={activeMarker.restaurant} />)
+    const activeInterestPoint = this.state.interestPoints.find(
+      interestPoint => {
+        return interestPoint.restaurant.id === this.props.activeRestaurant.id;
+      }
     );
-    infoWindow.open(this.googleMap, activeMarker.marker);
+
+    const { infoWindow } = activeInterestPoint;
+
+    activeInterestPoint.marker.setIcon(activePin);
+    infoWindow.setContent(
+      renderToString(
+        <RestaurantCard restaurant={activeInterestPoint.restaurant} />
+      )
+    );
+    infoWindow.open(this.googleMap, activeInterestPoint.marker);
   }
 
-  createMarker(restaurant) {
-    const marker = new window.google.maps.Marker({
-      position: new window.google.maps.LatLng(
+  createInterestPoint(restaurant) {
+    const marker = new this.googleMapsInstance.Marker({
+      position: new this.googleMapsInstance.LatLng(
         restaurant.latLng.lat,
         restaurant.latLng.lng
       ),
@@ -81,9 +94,10 @@ class MapContainer extends Component {
       icon: staticPin,
       title: restaurant.name
     });
-    const infoWindow = new window.google.maps.InfoWindow();
+    const infoWindow = new this.googleMapsInstance.InfoWindow();
 
-    window.google.maps.event.addListener(marker, "mouseover", () => {
+    // add event listeners for mouse over and mouse out on marker
+    this.googleMapsInstance.event.addListener(marker, "mouseover", () => {
       this.closeOpenWindow(this.props.activeRestaurant);
       infoWindow.setContent(
         renderToString(<RestaurantCard restaurant={restaurant} />)
@@ -93,7 +107,7 @@ class MapContainer extends Component {
       this.props.updateActiveRestaurant(restaurant);
     });
 
-    window.google.maps.event.addListener(infoWindow, "mouseout", () => {
+    this.googleMapsInstance.event.addListener(infoWindow, "mouseout", () => {
       this.props.updateActiveRestaurant({ id: null });
       marker.setIcon(staticPin);
     });
@@ -101,18 +115,18 @@ class MapContainer extends Component {
     return { marker, infoWindow, restaurant };
   }
 
-  generateNewMarkers = () => {
-    const markers = this.props.restaurants.map(restaurant => {
-      return this.createMarker(restaurant);
+  generateNewInterestPoints = () => {
+    const interestPoints = this.props.restaurants.map(restaurant => {
+      return this.createInterestPoint(restaurant);
     });
 
-    this.setState({ markers });
+    this.setState({ interestPoints });
   };
 
   updateMapMarkers() {
     this.removeMarkers();
-    this.generateNewMarkers();
-    this.props.toggleNewSearchFalse();
+    this.generateNewInterestPoints();
+    this.props.toggleNewSearchFalse(); // lets the Parent component know that the markers have been updated
   }
 
   render() {
