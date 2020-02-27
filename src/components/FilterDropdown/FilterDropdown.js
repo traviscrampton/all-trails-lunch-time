@@ -22,14 +22,15 @@ class FilterDropdown extends Component {
 
   render() {
     return (
-      <div className="filter-dropdown-container" onSubmit={this.handleSubmit}>
-        <form>
+      <div className="filter-dropdown-container">
+        <form onSubmit={this.handleSubmit}>
           <div>
             <label className="label-container">
               Ratings High to Low
               <input
                 type="radio"
                 value="desc"
+                className="desc"
                 onChange={this.handleRadioClick}
                 checked={this.state.sort === "desc"}
               />
@@ -44,6 +45,7 @@ class FilterDropdown extends Component {
               <input
                 type="radio"
                 value="asc"
+                className="asc"
                 onChange={this.handleRadioClick}
                 checked={this.state.sort === "asc"}
               />

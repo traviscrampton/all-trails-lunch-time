@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import Header from "./components/Header/Header";
-import MapContainer from "./components/Map/Map";
+import MapContainer from "./components/MapContainer/MapContainer";
 import CardList from "./components/CardList/CardList";
 import _ from "lodash";
 import "./LunchTime.css";
