@@ -3,7 +3,7 @@ import { mount } from "enzyme";
 import MapContainer from "./MapContainer";
 import { setupGoogleMock } from "../../test-helper.js";
 
-describe("SearchBar", () => {
+describe("MapContainer", () => {
   beforeAll(() => {
     setupGoogleMock();
   });

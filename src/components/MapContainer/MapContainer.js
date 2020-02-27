@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import "./Map.css";
+import "./MapContainer.css";
 import PropTypes from "prop-types";
 import { renderToString } from "react-dom/server";
 import RestaurantCard from "../RestaurantCard/RestaurantCard";

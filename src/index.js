@@ -1,7 +1,7 @@
 import React from "react";
 import ReactDOM from "react-dom";
 import "./index.css";
-import LunchTime from "./LunchTime";
+import LunchTime from "./components/LunchTime/LunchTime";
 import * as serviceWorker from "./serviceWorker";
 
 ReactDOM.render(<LunchTime />, document.getElementById("root"));
