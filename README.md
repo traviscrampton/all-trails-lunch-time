@@ -4,6 +4,7 @@ A small app that hits the google maps and places api in order to search for diff
 
 # To get started:
 
+Run yarn install
 This will not work unless the .env files are in place. I can send over the correct text for the env file.
 
 ## Available Scripts
