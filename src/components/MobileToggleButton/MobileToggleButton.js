@@ -6,16 +6,16 @@ const ButtonCopy = ({ isMobileFullMap }) => {
   if (isMobileFullMap) {
     return (
       <div className="button-copy">
-        <i className="material-icons">place</i>
-        <span>Map</span>
+        <i className="material-icons">list</i>
+        <span>List</span>
       </div>
     );
   }
 
   return (
     <div className="button-copy">
-      <i className="material-icons">list</i>
-      <span>List</span>
+      <i className="material-icons">place</i>
+      <span>Map</span>
     </div>
   );
 };

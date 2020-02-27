@@ -29,19 +29,19 @@
 }
 
 .app-body {
-  height: 75vh;
+  height: 91vh;
   display: flex;
   flex-direction: row;
 }
 
 .app-body.fullCardList {
   display: static;
-  height: 86vh;
+  height: 87vh;
 }
 
 .app-body.fullMap {
   display: static;
-  height: 86vh;
+  height: 87vh;
 }
 
 .app-body.fullCardList .cardlist-container {

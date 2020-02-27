@@ -20,7 +20,7 @@ class SearchBar extends Component {
     });
     const request = {
       location: allTrailsHQ,
-      radius: "200",
+      radius: "50",
       query: this.props.searchText,
       type: "restaurant"
     };
